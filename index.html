@@ -486,10 +486,11 @@
 
                     const fileBlob = new Blob([file], { type: 'audio/m4u' })
                     console.log("File uploaded", fileBlob.toString().length)
-
+                    let { env } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+                    let authorization = env == "sandbox" ? "Bearer aba1bc0c9163ffb006ffc2f24779f812fbc9294c224785ede2a899dad0b28e63" : "Bearer 41d10c00f30cab3874036dbd93de44f17d9bc3e22d98b2a8fc361aab75ba3bfd"
                     var myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/binary");
-                    myHeaders.append("Authorization", "Bearer aba1bc0c9163ffb006ffc2f24779f812fbc9294c224785ede2a899dad0b28e63");
+                    myHeaders.append("Authorization", authorization);
                     myHeaders.append("Cookie", "__cfruid=ac5013aec99a52bd2b8af09da3ee3120b9711fb6-1622516380; _zendesk_session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVEkiJTAzNDdkMmU1MTA3Y2JmMWIzOTc0MDQyOGE2NTcyYmEwBjsAVEkiDGFjY291bnQGOwBGaQMR95xJIgpyb3V0ZQY7AEZpA582Ow%3D%3D--5e799ad44877306f7c22b2ab9da3034f88c358c3");
 
                     console.log("this is the variable", data)
@@ -525,7 +526,8 @@
                         );
                     }
                     else {
-                        fetch("https://codapayment1601020012.zendesk.com/api/v2/uploads?filename=user_upload", requestOptions)
+                        const url = env == "sandbox" ? `https://codapayment1601020012.zendesk.com/api/v2/uploads?filename=user_upload` : `https://codapayment.zendesk.com/api/v2/uploads?filename=user_upload`
+                        fetch(url, requestOptions)
                             .then(response => response.text())
                             .then(result => {
                                 result = JSON.parse(result)
