@@ -433,7 +433,7 @@
             const games = document.getElementById("games")
             const message = document.getElementById("user-message")
             // console.log(message.value, "Message value after submitting")
-            if (data["payment-type"] === "null" || data.games === "null" || data.email.length == 0 || data.name.length == 0 || data.phone.length == 0 || !emailRegex.test(data.email)) {
+            if (data["payment-type"] === "null" || data.games === "null" || data.email.length == 0 || data.name.length == 0 || !emailRegex.test(data.email)) {
                 if (data.name.length == 0) {
                     document.getElementById("invalid-message").innerHTML = language == "id" ? "Nama wajib diisi untuk terhubung ke Agen Kami!" : "Name is required to connect an agent!"
                     name.placeholder = language == "id" ? 'Nama wajib diisi untuk terhubung ke Agen Kami' : "Name is required to connect an agent"
@@ -460,15 +460,15 @@
                     message.classList.remove("invalid-placeholder")
                     email.focus();
                 }
-                else if (data.phone.length == 0) {
-                    document.getElementById("invalid-message").innerHTML = language == "id" ? "No.Telepon wajib diisi untuk terhubung ke Agen Kami!" : "Phone number is required to connect an agent!"
-                    phone.placeholder = language == "id" ? 'No.Telepon wajib diisi untuk terhubung ke Agen Kami' : "Phone number is required to connect an agent"
-                    phone.classList.add('invalid-placeholder');
-                    name.classList.remove("invalid-placeholder");
-                    email.classList.remove("invalid-placeholder")
-                    message.classList.remove("invalid-placeholder")
-                    phone.focus();
-                }
+                // else if (data.phone.length == 0) {
+                //     document.getElementById("invalid-message").innerHTML = language == "id" ? "No.Telepon wajib diisi untuk terhubung ke Agen Kami!" : "Phone number is required to connect an agent!"
+                //     phone.placeholder = language == "id" ? 'No.Telepon wajib diisi untuk terhubung ke Agen Kami' : "Phone number is required to connect an agent"
+                //     phone.classList.add('invalid-placeholder');
+                //     name.classList.remove("invalid-placeholder");
+                //     email.classList.remove("invalid-placeholder")
+                //     message.classList.remove("invalid-placeholder")
+                //     phone.focus();
+                // }
                 // else if (message.value == "") {
                 //     document.getElementById("invalid-message").innerHTML = language == "id" ? "No.Telepon wajib diisi untuk terhubung ke Agen Kami!" : "Phone number is required to connect an agent!"
                 //     // me.placeholder = language == "id" ? 'No.Telepon wajib diisi untuk terhubung ke Agen Kami' : "Phone number is required to connect an agent"
@@ -575,6 +575,7 @@
                 catch (e) {
                     console.log("File not uploaded", e)
                     data.attachmentToken = ""
+                    console.log("In catch",data)
                     window.parent.postMessage(
                         JSON.stringify({
                             event_code: "ym-client-event",
@@ -631,8 +632,7 @@
             <h6 id="phone-header">
                 Nomor Handphone<sup>*</sup>
             </h6>
-            <input type="number" placeholder="Silakan Masukkan No.Handphone Anda" class="input-field" id="phone"
-                oninput="phoneHandler()" name="phone" required>
+            <input type="number" placeholder="Silakan Masukkan No.Handphone Anda" class="input-field" id="phone" name="phone">
             <h6 id="payment-header">
                 Saluran pembarayan<sup>*</sup>
             </h6>
