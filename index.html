@@ -432,7 +432,6 @@
             const country = document.getElementById("country")
             const games = document.getElementById("games")
             const message = document.getElementById("user-message")
-            const submit = document.getElementById("submit-button")
             // console.log(message.value, "Message value after submitting")
             if (data["payment-type"] === "null" || data.games === "null" || data.email.length == 0 || data.name.length == 0 || !emailRegex.test(data.email)) {
                 if (data.name.length == 0) {
@@ -502,8 +501,6 @@
                         phone.disabled = true;
                         country.disabled = true;
                         games.disabled = true;
-                        submit.disabled = true;
-
 
                         var requestOptions = {
                             method: 'POST',
@@ -557,12 +554,6 @@
                             .catch(error => console.log('error', error));
                     }
                     else {
-                        name.disabled = true;
-                        email.disabled = true;
-                        phone.disabled = true;
-                        country.disabled = true;
-                        games.disabled = true;
-                        submit.disabled = true;
                         data.attachmentToken = ""
                         console.log(data)
                         window.parent.postMessage(
@@ -582,16 +573,9 @@
                     }
                 }
                 catch (e) {
-                    name.disabled = true;
-                    email.disabled = true;
-                    phone.disabled = true;
-                    country.disabled = true;
-                    games.disabled = true;
-                    submit.disabled = true;
-                    // message.disabled = true;
                     console.log("File not uploaded", e)
                     data.attachmentToken = ""
-                    console.log("In catch", data)
+                    console.log("In catch",data)
                     window.parent.postMessage(
                         JSON.stringify({
                             event_code: "ym-client-event",
@@ -648,8 +632,7 @@
             <h6 id="phone-header">
                 Nomor Handphone<sup>*</sup>
             </h6>
-            <input type="number" placeholder="Silakan Masukkan No.Handphone Anda" class="input-field" id="phone"
-                name="phone">
+            <input type="number" placeholder="Silakan Masukkan No.Handphone Anda" class="input-field" id="phone" name="phone">
             <h6 id="payment-header">
                 Saluran pembarayan<sup>*</sup>
             </h6>
