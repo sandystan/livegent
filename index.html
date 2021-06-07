@@ -273,7 +273,7 @@
             document.getElementById("submit-button").value = language == "id" ? "Kirim" : "Submit"
             if (status == "offline") {
                 const message = document.createElement("h6")
-                message.innerHTML = language == "id" ? "Message" : "Message"
+                message.innerHTML = language == "id" ? "Pesan" : "Message"
                 message.id = "message-header"
                 document.getElementById("offline-message").appendChild(message)
                 const messageBox = document.createElement("textarea")
@@ -287,7 +287,7 @@
                 document.getElementById("offline-message").appendChild(messageBox)
                 // messageBox.setAttribute("oninput", messageHandler());
                 const attachment = document.createElement("h6")
-                attachment.innerHTML = language == "id" ? "Attachment" : "Attachment"
+                attachment.innerHTML = language == "id" ? "Lampiran" : "Attachment"
                 attachment.id = "attachment-header"
                 document.getElementById("offline-message").appendChild(attachment)
                 const attachmentInput = document.createElement("input")
@@ -504,7 +504,7 @@
                         games.disabled = true;
                         submit.disabled = true;
 
-
+                        
                         var requestOptions = {
                             method: 'POST',
                             headers: myHeaders,
